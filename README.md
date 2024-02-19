@@ -55,16 +55,16 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
 - **Criação de Componente:** Guiem a criação de um componente Blade simples, como um botão ou um cabeçalho. Mostrem o código do template, script e estilo.
 - ```blade
   {{-- resources/views/components/botao.blade.php --}}
-<button class="{{ $classe }}">
-    {{ $slot }}
-</button>
+  <button class="{{ $classe }}">
+  {{ $slot }}
+  </button>
 
 - **Integração do Componente:** Expliquem como integrar o componente Blade criado em uma view Laravel. Utilizem o componente criado passando dados como classes e conteúdo:
 - ```blade
   {{-- Uso do componente dentro de uma view Blade --}}
-@component('components.botao', ['classe' => 'btn-primary'])
+  @component('components.botao', ['classe' => 'btn-primary'])
     Clique Aqui
-@endcomponent
+  @endcomponent
 
 # Seção 2: Arquitetura do Laravel
 
@@ -131,20 +131,18 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
 2. **Exemplo Prático:** Mostrem como criar e registrar um Service Provider no Laravel, exemplificando com a criação de um serviço customizado para enviar notificações.
 - ```php
    <?php
+  namespace App\Providers;
+  use Illuminate\Support\ServiceProvider;
 
-namespace App\Providers;
-
-use Illuminate\Support\ServiceProvider;
-
-class NotificationServiceProvider extends ServiceProvider
-{
+  class NotificationServiceProvider extends ServiceProvider
+  {
     public function register()
     {
         $this->app->bind('notifier', function ($app) {
             return new Notifier();
         });
     }
-}
+  }
 
 ## 4 Técnicas Avançadas de Implementação
 
@@ -165,15 +163,15 @@ class NotificationServiceProvider extends ServiceProvider
 
 -**Integração com Vue.js**: Discutam como por exemplo é possível fazer com que o Laravel possa ser integrado com um framework como o `Vue.js` para criar interfaces reativas no frontend, mantendo o Laravel no backend para lógica de aplicação e acesso a dados.
 -**Componentes Blade**: Expliquem como usar componentes `Blade` para controlar a renderização de partes da UI, demonstrando como passar dados para componentes e utilizar loops `Blade` para renderizar listas dinâmicas.
--```blade 
+```blade
 @if ($condicao)
-  <div>Conteúdo condicional</div>
+<div>Conteúdo condicional</div>
 @endif
 
 @foreach ($itens as $item)
-  <div>{{ $item->nome }}</div>
+<div>{{ $item->nome }}</div>
 @endforeach
-
+```
 -**Práticas Recomendadas**: Forneçam dicas sobre como combinar `Laravel` com tecnologias frontend como `Vue.js` para construir SPAs ou PWA, otimizando o carregamento e interatividade da página.
 
 ## 5 Conclusão e Reflexão
