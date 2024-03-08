@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class TarefaController extends Controller
 {
     public function create(){
-        return view('tarefa.create');
+        return view('create');
     }
 }

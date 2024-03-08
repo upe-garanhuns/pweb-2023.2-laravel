@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TarefaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/create-tarefa', [TarefaController::class, 'create'])->name('tarefa.create');
+Route::get('/create-tarefa', [TarefaController::class, 'create']);
 
