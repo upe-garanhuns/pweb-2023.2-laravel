@@ -16,6 +16,8 @@ class TarefaController extends Controller
         dd($request->descricao);
         dd($request->data);
         dd($request->concluido);
+
+        return view('store');
     }
 
     public function show() {
