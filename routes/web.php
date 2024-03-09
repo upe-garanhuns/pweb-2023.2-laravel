@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/create-tarefa', [TarefaController::class, 'create']);
-
+Route::get('/show-tarefa', [TarefaController::class, 'show']);
+Route::post('/store-tarefa', [TarefaController::class, 'store']);
