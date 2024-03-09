@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarefaController;
+use Spatie\FlareClient\Api;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,9 @@ use App\Http\Controllers\TarefaController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', [TarefaController::class, 'index']);
 Route::get('/create-tarefa', [TarefaController::class, 'create']);
 Route::get('/show-tarefa', [TarefaController::class, 'show']);
 Route::post('/store-tarefa', [TarefaController::class, 'store']);
+
