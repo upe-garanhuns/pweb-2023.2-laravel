@@ -17,8 +17,8 @@ use Spatie\FlareClient\Api;
 */
 
 
-Route::get('/', [TarefaController::class, 'index']);
-Route::get('/create-tarefa', [TarefaController::class, 'create']);
-Route::get('/show-tarefa', [TarefaController::class, 'show']);
-Route::post('/store-tarefa', [TarefaController::class, 'store']);
+Route::get('/', [TarefaController::class, 'index'])->name('tarefa.index');
+Route::get('/create-tarefa', [TarefaController::class, 'create'])->name('tarefa.create');
+Route::get('/show-tarefa', [TarefaController::class, 'show'])->name('tarefa.show');
+Route::post('/store-tarefa', [TarefaController::class, 'store'])->name('tarefa.store');
 

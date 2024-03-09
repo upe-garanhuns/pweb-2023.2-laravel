@@ -14,4 +14,31 @@ class TarefaService
         $response = Http::get(self::BASE_URL . '/listar');
         return $response->json();
     }
+
+    public function cadastrarTarefas($tarefa)
+    {
+        //
+        // $validatedData = validator($tarefa, [
+        //     'id' => 'required|numeric',
+        //     'checkStatus' => 'nullable|boolean',
+        //     'titulo' => 'required|string|max:255',
+        //     'descricao' => 'nullable|string',
+        //     'data' => 'nullable|date'
+        //     // Add more validation rules as needed
+        // ])->validate();
+        //\
+
+        $checkStatus = $tarefa['concluida'] === 'on' ? true : false;
+
+        $tarefa['concluida'] = $checkStatus;
+
+        $response = Http::post(self::BASE_URL. '/criar', $tarefa);
+
+
+        if ($response->successful()) {
+            return new Tarefa($response->json());
+        } else {
+            throw new \Exception('Não foi possível cadastrar a tarefa: ' . $response->status());
+        }
+    }
 }
