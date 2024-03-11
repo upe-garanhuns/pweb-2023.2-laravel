@@ -41,4 +41,15 @@ class TarefaService
             throw new \Exception('Não foi possível cadastrar a tarefa: ' . $response->status());
         }
     }
+
+    public function atualizarTarefaPorId($tarefa){
+        $response = Http::put(self::BASE_URL. '/atualizar/'. $tarefa['id'], $tarefa);
+
+
+        if ($response->successful()) {
+            return new Tarefa($response->json());
+        } else {
+            throw new \Exception('Não foi possível atualizar a tarefa: ' . $response->status());
+        }
+    }
 }
