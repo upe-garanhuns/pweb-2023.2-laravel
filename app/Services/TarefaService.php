@@ -27,12 +27,11 @@ class TarefaService
         //     // Add more validation rules as needed
         // ])->validate();
         //\
-
         $checkStatus = $tarefa['concluida'] === 'on' ? true : false;
 
         $tarefa['concluida'] = $checkStatus;
 
-        $response = Http::post(self::BASE_URL. '/criar', $tarefa);
+        $response = Http::post(self::BASE_URL . '/criar', $tarefa);
 
 
         if ($response->successful()) {
@@ -42,12 +41,28 @@ class TarefaService
         }
     }
 
-    public function atualizarTarefaPorId($tarefa){
-        $response = Http::put(self::BASE_URL. '/atualizar/'. $tarefa['id'], $tarefa);
+    public function buscarTarefaPorId($id)
+    {
+        $response = Http::get(self::BASE_URL . '/listar/' . $id);
 
 
         if ($response->successful()) {
-            return new Tarefa($response->json());
+            $tarefa = new Tarefa($response->json());
+            return $tarefa;
+        } else {
+            throw new \Exception('Não foi possível buscar a tarefa: ' . $response->status());
+        }
+    }
+
+    public function atualizarTarefaPorId($id, $tarefa)
+    {
+        $checkStatus = $tarefa['concluida'] === 'on' ? true : false;
+        $tarefa['concluida'] = $checkStatus;
+
+        $response = Http::put(self::BASE_URL . '/atualizar/' . $id, $tarefa);
+
+        if ($response->successful()) {
+            return redirect()->route('tarefa.show', ['id' => $id]);
         } else {
             throw new \Exception('Não foi possível atualizar a tarefa: ' . $response->status());
         }
