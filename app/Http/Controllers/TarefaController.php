@@ -31,7 +31,7 @@ class TarefaController extends Controller
     {
         try {
             $novaTarefa = $this->tarefaService->cadastrarTarefas($request);
-            return response()->json($novaTarefa, 201);
+            return redirect()->route('tarefa.index');
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
@@ -39,9 +39,31 @@ class TarefaController extends Controller
         }
     }
 
-    public function show()
+    public function show(string $id)
     {
-        return view('show');
+        
+        $tarefa = $this->tarefaService->buscarTarefaPorId($id)->toArray();
+        
+        return view('show', compact('tarefa'));
+    }
+
+    public function edit(string $id){
+        $tarefa = $this->tarefaService->buscarTarefaPorId($id);
+
+        return view('edit', compact('tarefa'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $updatedTarefa = $this->tarefaService->atualizarTarefaPorId($id, $request);
+
+            return $updatedTarefa;
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Erro ao atualizar tarefas'
+            ], 500);
+        }
     }
 
     public function fetchData(TarefaService $tarefaService)

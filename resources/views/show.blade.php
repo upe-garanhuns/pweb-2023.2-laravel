@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    <h2>Tarefas</h2>
+
+<h2>Tarefas</h2>
     <br>
     <div>
         <table style="width:100%">
@@ -9,13 +10,12 @@
                 <th>Id</th>
                 <th>Título</th>
                 <th>Descrição</th>
-                <th>Data</th>
+                <th>Data</th>   
                 <th>Status</th>
             </tr>
-            @foreach ($tarefas as $tarefa)
                 <tr>
                     <td>{{ $tarefa['id'] }}</td>
-                    <td><a href="{{route('tarefa.show', ['id' => $tarefa['id']])}}">{{ $tarefa['titulo'] }}</a></td>
+                    <td>{{ $tarefa['titulo'] }}</td>
                     <td>{{ $tarefa['descricao'] }}</td>
                     <td>{{ $tarefa['data'] }}</td>
                     <td>
@@ -26,7 +26,9 @@
                         @endif
                     </td>
                 </tr>
-            @endforeach
         </table>
-    </div>
+        <br><br>
+        <a class="btn_criar" href="{{ route('tarefa.edit', ['id' => $tarefa['id']]) }}">Editar</a>
+    </div>  
+
 @endsection
