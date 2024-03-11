@@ -1,0 +1,67 @@
+version: "3.7"
+
+services:
+    # image project
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - redis
+        networks:
+            - laravel
+
+    # nginx
+    nginx:
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "8989:80"
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx/:/etc/nginx/conf.d/
+        networks:
+            - laravel
+
+    # # database
+    # db:
+    #     image: postgres
+    #     container_name: postgres
+    #     restart: unless-stopped
+    #     environment:
+    #         POSTGRES_DB: ${DB_DATABASE:-app_db}
+    #         POSTGRES_USER: ${DB_USERNAME:-postgres}
+    #         POSTGRES_PASSWORD: ${DB_PASSWORD:-admin}
+    #     volumes:
+    #         - ./.docker/postgresql/data:/var/lib/postgresql/data
+    #     ports:
+    #         - "5488:5432"
+    #     networks:
+    #         - laravel
+
+    # redis
+    redis:
+        image: redis:latest
+        networks:
+            - laravel
+    # # pgadmin
+    # pgadmin:
+    #     image: dpage/pgadmin4
+    #     container_name: pgAdmin
+    #     ports:
+    #         - "5050:80"
+    #     depends_on:
+    #         - db
+    #     environment:
+    #         PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+    #         PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    #     volumes:
+    #     - ./.docker/servers.json:/pgadmin4/servers.json
+
+networks:
+    laravel:
+        driver: bridge
