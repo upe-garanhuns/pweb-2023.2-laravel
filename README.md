@@ -1,18 +1,19 @@
 Template para Seminário sobre a tecnologia vue
+
 # Guia Detalhado para Seminário de `Laravel`
 
 Este guia serve como um roteiro detalhado para alunos que estão preparando um seminário técnico e aprofundado sobre `Laravel`, com foco na arquitetura e implementação.
 
 # Seção 1: Introdução ao Laravel
 
-- Nesta seção, vocês devem abordar o que é `Laravel`, por que ele é uma escolha popular entre os desenvolvedores, e como iniciar projetos em PHP usando este framework. 
-- O objetivo é fornecer aos colegas que estão assitindo a apresentação uma visão geral com base sólida sobre o que vocês pesquisaram sobre o `Laravel`. 
+- Nesta seção, vocês devem abordar o que é `Laravel`, por que ele é uma escolha popular entre os desenvolvedores, e como iniciar projetos em PHP usando este framework.
+- O objetivo é fornecer aos colegas que estão assitindo a apresentação uma visão geral com base sólida sobre o que vocês pesquisaram sobre o `Laravel`.
 - Vocês devem destacar suas principais características, tecnologias associadas, aspectos arquiteturais marcantes e potenciais benefícios.
 
 ## 1.1 O que é Laravel?
 
 - Destaquem que o `Laravel` é um `framework de aplicação` `PHP` que oferece uma abordagem para o desenvolvimento de aplicações web, seguindo o padrão arquitetônico MVC (Model-View-Controller).
-- Lembrem-se que diferente de frameworks JavaScript como `Vue.js` ou `React`, em `Laravel`, a "reatividade" pode ser interpretada através de sua capacidade de responder dinamicamente a solicitações web, usando técnicas como Eloquent ORM para interações reativas com o banco de dados.para a construção de interfaces de usuário. Expliquem isso arqruiteturalmente falando. 
+- Lembrem-se que diferente de frameworks JavaScript como `Vue.js` ou `React`, em `Laravel`, a "reatividade" pode ser interpretada através de sua capacidade de responder dinamicamente a solicitações web, usando técnicas como Eloquent ORM para interações reativas com o banco de dados.para a construção de interfaces de usuário. Expliquem isso arqruiteturalmente falando.
 - Abordem que ao contrário de outros frameworks monolíticos o `Laravel` é projetado para ser adotado incrementalmente. Discutam o que significa isso de maneira prática com exemplos e mostre os impactos (benefícios/malefícios) desta característica.
 - Abordem a possibilidade de adoção incremental. Laravel, embora não descrito tradicionalmente como "progressivo" da mesma forma que alguns frameworks front-end, oferece flexibilidade que permite aos desenvolvedores adotar e integrar suas funcionalidades conforme a necessidade. Isso significa que projetos podem começar pequenos e escalar com o uso de mais funcionalidades do framework, como autenticação, filas, testes e eventos. Isso beneficia a manutenção e a escalabilidade do projeto, mas exige um bom entendimento do framework para integrar novos componentes efetivamente.
 - Destrinchem o núcleo da biblioteca, ressaltem o motivo e detalhem da parspectiva de uma arquitetura `MVC`. O núcleo do Laravel é baseado no padrão MVC, que separa a lógica da aplicação (Model), a interface do usuário (View) e a lógica de controle (Controller). Detalhem como essa separação ajuda na possibilidade de organizar o código de forma eficiente, facilita a manutenção e suporta o desenvolvimento em equipe ao definir claramente as responsabilidades dentro da aplicação. O foco na camada de visualização do Laravel gerencia muito mais do que a VIEW, abrangendo todo o ciclo de solicitação e resposta com rotas, middleware, e a camada de modelo.
@@ -42,16 +43,20 @@ Introduzam o `Laravel` em um projeto surpreendentemente simples. Apresentem a fl
   ```bash
   composer global require laravel/installer
 
+  ```
 - **Criação de um Novo Projeto:** Mostrem como criar um novo projeto `Laravel` usando o `Laravell Installer` com o comando `new`. Isso criará um novo diretório contendo uma instalação Laravel fresca com todas as dependências necessárias já instaladas.
 - ```bash
   laravel new meu-projeto-laravel
 
+  ```
 - **Estrutura do Projeto:** Forneçam uma visão geral da estrutura de pastas de um projeto e explique a finalidade de cada pasta e arquivo principal. Lembre-se de enfatizar a estrutura incluindo diretórios como app/ para o código da aplicação, config/ para arquivos de configuração, public/ para arquivos acessíveis publicamente, resources/ para views e assets, routes/ para definições de rotas, e storage/ para arquivos de log e sessões.
 
 ## 1.4 Primeiro Componente Laravel
+
 Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a UI. Discutam que por exemplo diferente do Vue, Blade não é baseado em componentes reativos, mas permite a criação de componentes reutilizáveis que podem incluir template, lógica e estilos de maneira simplificada.
 
 **Orientações adicionais:**
+
 - **Criação de Componente:** Guiem a criação de um componente Blade simples, como um botão ou um cabeçalho. Mostrem o código do template, script e estilo.
 - ```blade
   {{-- resources/views/components/botao.blade.php --}}
@@ -59,12 +64,15 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
   {{ $slot }}
   </button>
 
+  ```
 - **Integração do Componente:** Expliquem como integrar o componente Blade criado em uma view Laravel. Utilizem o componente criado passando dados como classes e conteúdo:
 - ```blade
   {{-- Uso do componente dentro de uma view Blade --}}
   @component('components.botao', ['classe' => 'btn-primary'])
     Clique Aqui
   @endcomponent
+
+  ```
 
 # Seção 2: Arquitetura do Laravel
 
@@ -74,13 +82,13 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
 
 ## 2.1 Estrutura de Componentes do Laravel
 
-- Detalhem que `Laravel` não é baseado em componentes para UI como o `Vue.js`.- 
+- Detalhem que `Laravel` não é baseado em componentes para UI como o `Vue.js`.-
 - Lembrem-se de nesta seção detalhar como os componentes funcionam e como eles podem ser compostos para construir aplicações complexas.
 
 ### Orientações adicionais:
 
 1. **Definição de Componente:** Expliquem o que é um componente no contexto do Laravel, utilizando Blade para criar componentes reutilizáveis que encapsulam parte do HTML e lógica.
-   
+
    ```blade
    @component('components.alert')
     @slot('title')
@@ -91,58 +99,96 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
    @endcomponent
 
 
+   ```
 2. **Composição de Componentes:** Discutam como os componentes Blade podem ser compostos para construir interfaces complexas, utilizando slots para passar conteúdo adicional.
-
 3. **Exemplo Prático:** Forneçam um exemplo detalhado da criação de um pequeno componente composto por vários componentes interligados, como uma lista de tarefas. Mostrem cada passo, desde a criação dos componentes individuais até a sua composição em um aplicativo funcional.
 
 ## 2.2 Sistema "Reativo" do Laravel
-- Destaquem que Laravel não utiliza um sistema reativo no mesmo sentido que frameworks `JavaScript`. Lembrem-se que ele oferece maneiras de responder a eventos e manipular dados dinamicamente, principalmente através do `Eloquent` para interações com o banco de dados e eventos.
-- Nesta seção explorem os fundamentos desse sistema , incluindo o uso de observadores para detectar mudanças de dados e a virtual DOM para minimizar o impacto no desempenho.
 
-### Orientações adicionais:
-- Acrescentem uma seção `Eventos e Listeners`: Expliquem como Laravel usa eventos e listeners para permitir uma forma de reatividade, permitindo que partes da aplicação reajam a ações ou mudanças de estado.
+- Embora o Laravel não utilize um sistema reativo como os frameworks JavaScript, ele oferece maneiras de responder a eventos e manipular dados dinamicamente, principalmente através do Eloquent para interações com o banco de dados e eventos.
+- Os eventos do Laravel fornecem uma implementação simples do padrão Observer, permitindo que você se inscreva e ouça vários eventos que ocorrem dentro da sua aplicação.
 
-- Acrescentem uma seção `Eloquent ORM`: Demonstrem como o `Eloquent ORM` pode ser usado para atualizar a `UI` baseada em mudanças de dados no banco de dados, embora indiretamente, através de re-renderização da página ou interações `AJAX`.
+* As classes de eventos são geralmente armazenadas no diretório app/Events, enquanto seus ouvintes são armazenados em app/Listeners.
+* Os eventos servem como uma ótima maneira de desacoplar vários aspectos de sua aplicação, já que um único evento pode ter vários ouvintes que não dependem um do outro.
+
+Por exemplo, você pode querer enviar uma notificação no Slack para seu usuário toda vez que um pedido for enviado. Em vez de acoplar seu código de processamento de pedidos ao seu código de notificação no Slack, você pode gerar um evento App\Events\OrderShipped que um ouvinte pode receber e usar para despachar uma notificação no Slack.
+
+![1710807911978](image/README/1710807911978.png)
+
+![1710807948805](image/README/1710807948805.png)![1710807965615](image/README/1710807965615.png)
+
+Agora, sempre que um pedido for enviado, você pode despachar o evento OrderShipped em qualquer lugar do seu código
 
 ## 2.3 Comunicação Entre Componentes
-- Reforcem que em Laravel, a comunicação entre componentes (`Blade`) é geralmente feita através de passagem de dados para views e uso de componentes aninhados.
 
-### Orientações adicionais:
-- Acrescentem uma seção `Passagem de Dados para Views`: Mostrem como dados são passados para componentes Blade através de controllers, utilizando arrays ou com a sintaxe compact do `PHP`.
+Em Laravel, a comunicação entre componentes é uma prática comum realizada através da passagem de dados para as views e do uso de componentes aninhados. Esse método permite uma separação clara de responsabilidades e contribui para uma estrutura de código mais organizada e reutilizável.
 
-- Acrescentem uma seção `Inclusão de Componentes Aninhados:`: Expliquem como incluir componentes `Blade` dentro de outros, facilitando a reutilização e organização de código.
+Ao passar dados para os componentes das views, os Controllers desempenham um papel fundamental. Eles atuam como intermediários entre o modelo de dados e a interface de usuário, garantindo que as informações certas sejam entregues aos componentes corretos da view. Essa abordagem não apenas promove a coesão e a clareza no código, mas também facilita a manutenção e a escalabilidade do projeto a longo prazo.
+
+Exemplo:
+
+![1710808067727](image/README/1710808067727.png)
+
+
+* Neste exemplo, estamos passando todas as tarefas cadastradas para a view 'index'.
+* Na view, é possível acessar essas tarefas por meio da variável '$tarefas'
 
 # Seção 3: Padrões de Projeto e Implementação Avançada no Laravel
 
-- Nesta seção, abordem os padrões de projeto fundamentais incorporados no Laravel e como eles facilitam o desenvolvimento de aplicações robustas e manuteníveis.
-- Além disso explorem técnicas avançadas de implementação que otimizam a eficiência e a escalabilidade dos projetos `Laravel`.
-
 ## 3.1 Padrões de Projeto no Laravel
 
-- Destaquem que `Laravel` utiliza vários padrões de design para resolver problemas comuns de desenvolvimento web.
-- incluam subseções para citar cada um dos padrões de maneira geral para ajudar a compreender como a criação de componentes e aplicações podem ser mais eficientes como no exemplo abaixo:
+O Laravel utiliza vários padrões de design para resolver problemas comuns, proporcionando uma estrutura sólida e flexível para a criação de aplicações. Esses padrões ajudam a promover a modularidade, a reutilização de código e a manutenibilidade do código-fonte.
 
-### 3.1.1 Padrão Service Provider
+### 3.1 Padrão Service Provider
 
-- Citem como o `Laravel` adota o padrão `Service Provider` extensivamente, permitindo a definição de serviços e a ligação destes no container de serviço do framework. Expliquen como este padrão é fundamental para a arquitetura do Laravel, facilitando a extensibilidade e a customização da aplicação.
+* No Laravel, os Service Providers são utilizados para registrar serviços no contêiner de serviços do framework, permitindo a inicialização desses serviços de maneira centralizada e organizada. Aqui está um exemplo simples de como um Service Provider pode ser implementado:
+* Suponha que você tenha um serviço chamado LoggerService, que é responsável por registrar logs em sua aplicação. Você deseja registrar esse serviço no contêiner de serviços do Laravel usando um Service Provider.
 
-1. **Explique o Padrão:** Descrevam o padrão `Service Provider`, discutindo como ele permite registrar e bootstrapping de serviços dentro do framework.
+Crie um novo Service Provider executando o seguinte comando Artisan:
 
-2. **Exemplo Prático:** Mostrem como criar e registrar um Service Provider no Laravel, exemplificando com a criação de um serviço customizado para enviar notificações.
-- ```php
-   <?php
-  namespace App\Providers;
-  use Illuminate\Support\ServiceProvider;
+![1710808195618](image/README/1710808195618.png)
 
-  class NotificationServiceProvider extends ServiceProvider
-  {
-    public function register()
-    {
-        $this->app->bind('notifier', function ($app) {
-            return new Notifier();
-        });
-    }
-  }
+Isso criará um novo arquivo chamado LoggerServiceProvider.php dentro do diretório app/Providers. Abra este arquivo e adicione o seguinte código
+
+![1710808315016](image/README/1710808315016.png)
+
+Agora, você precisa registrar o Service Provider no arquivo config/app.php. Adicione a seguinte linha ao array de Service Providers
+
+![1710808371841](image/README/1710808371841.png)
+
+Agora você pode acessar o serviço LoggerService em qualquer lugar da sua aplicação, simplesmente resolvendo-o do contêiner de serviços. Por exemplo:
+
+![1710808397711](image/README/1710808397711.png)
+
+### 3.2 Padrão Factory
+
+No Laravel, as factories são utilizadas para criar instâncias de modelos com dados falsos para fins de teste e desenvolvimento. Aqui está um exemplo de como uma factory pode ser definida e utilizada
+
+Suponha que você tenha um modelo User e deseja criar uma factory para gerar dados falsos de usuário.
+
+Primeiro, crie uma factory para o modelo User usando o comando Artisan:
+
+![1710808577936](image/README/1710808577936.png)
+
+Isso criará um arquivo chamado UserFactory.php dentro do diretório database/factories.
+
+![1710808618104](image/README/1710808618104.png)
+
+Agora você pode usar essa factory em seus testes ou em qualquer outro lugar de sua aplicação onde você precise de dados falsos de usuário. Por exemplo, em um teste PHPUnit
+
+![1710808657722](image/README/1710808657722.png)
+
+### 3.2 Padrão Facade
+
+Facades são utilizadas no Laravel para fornecer uma interface simples e estática para classes complexas do framework. Isso facilita o uso dessas classes sem a necessidade de instanciá-las manualmente.
+
+Suponha que você queira usar a facade Cache para armazenar e recuperar dados em cache:
+
+![1710808740591](image/README/1710808740591.png)
+
+Para recuperar os dados do cache, você faria o seguinte:
+
+![1710808792886](image/README/1710808792886.png)
 
 ## 4 Técnicas Avançadas de Implementação
 
@@ -150,6 +196,7 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
 - Utilizem subseções para isso como no exemplo abaixo:
 
 ### 4.1 Gerenciamento de Estado com Laravel
+
 - Citem pque Laravel possui uma bordagens para o gerenciamento de estado no backend, usando sessões, cache e o `Eloquent ORM` para manter o estado da aplicação.
 - Vocês podem, por exemplo, utilizar subtópicos como a sugestão abaixo:
 
@@ -158,11 +205,13 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
 -**Exemplo de Uso**: Demonstrem como utilizar o `Eloquent ORM` para gerenciar o estado do banco de dados, com exemplos de como definir modelos e realizar operações `CRUD`.
 
 ### 4.2 Técnicas Avançadas para Interfaces de usuário com Laravel
-- Explorarem como Laravel combinado com o Blade e outras bibliotecas JavaScript podem criar interfaces de usuário dinâmicas  
+
+- Explorarem como Laravel combinado com o Blade e outras bibliotecas JavaScript podem criar interfaces de usuário dinâmicas
 - Vocês podem, por exemplo, utilizar subtópicos como a sugestão abaixo:
 
 -**Integração com Vue.js**: Discutam como por exemplo é possível fazer com que o Laravel possa ser integrado com um framework como o `Vue.js` para criar interfaces reativas no frontend, mantendo o Laravel no backend para lógica de aplicação e acesso a dados.
 -**Componentes Blade**: Expliquem como usar componentes `Blade` para controlar a renderização de partes da UI, demonstrando como passar dados para componentes e utilizar loops `Blade` para renderizar listas dinâmicas.
+
 ```blade
 @if ($condicao)
 <div>Conteúdo condicional</div>
@@ -172,22 +221,16 @@ Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a
 <div>{{ $item->nome }}</div>
 @endforeach
 ```
+
 -**Práticas Recomendadas**: Forneçam dicas sobre como combinar `Laravel` com tecnologias frontend como `Vue.js` para construir SPAs ou PWA, otimizando o carregamento e interatividade da página.
 
 ## 5 Conclusão e Reflexão
+
 - **Preparem uma Demonstração**: Certifiquem-se de que o projeto final esteja totalmente funcional e pronto para ser demonstrado. Revisem todos os requisitos do projeto para garantir que nada foi esquecido.
-
 - **Organizem a Apresentação**: Criem uma sequência lógica para apresentar o projeto. Iniciem com uma visão geral da aplicação, seguida por uma demonstração das funcionalidades principais e dos aspectos técnicos destacados.
-
 - ** Aproveitem para Destacar Desafios e Soluções**: Identifiquem os principais desafios enfrentados durante o desenvolvimento do projeto e discutam como resolveram esses problemas. Isso pode incluir desafios de codificação, decisões de design ou a integração de tecnologias.
-
 - ** Screencasts ou Vídeos** : Considerem a utilização de screencasts para demonstrar a funcionalidade da aplicação ou vídeos para explicar conceitos complexos. Isso pode ajudar a tornar a apresentação mais dinâmica e compreensível.
-  
 - **Discutam as Lições Aprendidas**: Reflitam sobre o que aprenderam durante o processo de desenvolvimento do projeto. Isso pode incluir novas habilidades técnicas, insights sobre design de software ou aperfeiçoamento de habilidades de trabalho em equipe.
-
 - **Avaliem o Uso do Laravel**: Avaliem como o Laravel facilitou ou complicou o desenvolvimento do projeto. Discutam os pontos fortes e fracos do Laravel com base na experiência prática adquirida.
-
 - **Considerem Melhorias Futuras** : Pensem em como o projeto pode ser expandido ou melhorado. Discutam funcionalidades adicionais que poderiam ser implementadas ou como a arquitetura poderia ser otimizada para maior eficiência e escalabilidade.
-
 - **Compartilhem Recursos Úteis**: Finalizem a apresentação compartilhando recursos que foram particularmente úteis durante o desenvolvimento do projeto. Isso pode incluir documentação, tutoriais, bibliotecas ou ferramentas.
-  
