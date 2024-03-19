@@ -1,107 +1,126 @@
-Template para Seminário sobre a tecnologia vue
-
-# Guia Detalhado para Seminário de `Laravel`
-
-Este guia serve como um roteiro detalhado para alunos que estão preparando um seminário técnico e aprofundado sobre `Laravel`, com foco na arquitetura e implementação.
+# Seminário de `Laravel`
 
 # Seção 1: Introdução ao Laravel
 
-- Nesta seção, vocês devem abordar o que é `Laravel`, por que ele é uma escolha popular entre os desenvolvedores, e como iniciar projetos em PHP usando este framework.
-- O objetivo é fornecer aos colegas que estão assitindo a apresentação uma visão geral com base sólida sobre o que vocês pesquisaram sobre o `Laravel`.
-- Vocês devem destacar suas principais características, tecnologias associadas, aspectos arquiteturais marcantes e potenciais benefícios.
+- Laravel é um framework PHP livre e open-source criado por Taylor B. Otwell para o desenvolvimento de sistemas web que utilizam o padrão MVC.
+- Taylor B. Otwell era um grande fã do `CodeIgniter`, um popular framework PHP da época que sofria com problemas de manutenção por ter sido abandonado pela empresa responsável
+- Com isso, ele aproveitou a oportunidade para criar um framework mais moderno que teria as características do `CodeIgniter`. Sendo assim, em 2011 ele criou o `Laravel`.
+- O `Laravel` foi reescrito em 2013, utilizando componentes de outro framework PHP, o `Symfony`.
 
 ## 1.1 O que é Laravel?
 
-- Destaquem que o `Laravel` é um `framework de aplicação` `PHP` que oferece uma abordagem para o desenvolvimento de aplicações web, seguindo o padrão arquitetônico MVC (Model-View-Controller).
-- Lembrem-se que diferente de frameworks JavaScript como `Vue.js` ou `React`, em `Laravel`, a "reatividade" pode ser interpretada através de sua capacidade de responder dinamicamente a solicitações web, usando técnicas como Eloquent ORM para interações reativas com o banco de dados.para a construção de interfaces de usuário. Expliquem isso arqruiteturalmente falando.
-- Abordem que ao contrário de outros frameworks monolíticos o `Laravel` é projetado para ser adotado incrementalmente. Discutam o que significa isso de maneira prática com exemplos e mostre os impactos (benefícios/malefícios) desta característica.
-- Abordem a possibilidade de adoção incremental. Laravel, embora não descrito tradicionalmente como "progressivo" da mesma forma que alguns frameworks front-end, oferece flexibilidade que permite aos desenvolvedores adotar e integrar suas funcionalidades conforme a necessidade. Isso significa que projetos podem começar pequenos e escalar com o uso de mais funcionalidades do framework, como autenticação, filas, testes e eventos. Isso beneficia a manutenção e a escalabilidade do projeto, mas exige um bom entendimento do framework para integrar novos componentes efetivamente.
-- Destrinchem o núcleo da biblioteca, ressaltem o motivo e detalhem da parspectiva de uma arquitetura `MVC`. O núcleo do Laravel é baseado no padrão MVC, que separa a lógica da aplicação (Model), a interface do usuário (View) e a lógica de controle (Controller). Detalhem como essa separação ajuda na possibilidade de organizar o código de forma eficiente, facilita a manutenção e suporta o desenvolvimento em equipe ao definir claramente as responsabilidades dentro da aplicação. O foco na camada de visualização do Laravel gerencia muito mais do que a VIEW, abrangendo todo o ciclo de solicitação e resposta com rotas, middleware, e a camada de modelo.
-- Detalhem a arquitetura MVC do Laravel e a capacidade de ser adotado incrementalmente. Discutam como isso pode facilitar a integração com outras bibliotecas e projetos existentes, proporcionando flexibilidade sem precedentes para desenvolvedores PHP. Discuta se isso permite um desenvolvimento ágil e adaptável às necessidades do projeto. Por outro lado, reflitam sobre a ampla gama de funcionalidades e a estrutura abrangente do Laravel e como podem aumentar a complexidade para novos desenvolvedores, exigindo um período de aprendizado para aproveitar plenamente o potencial do framework.
-
-**Orientações adicionais:**
-
-- **Pesquisa:** Façam uma pesquisa sobre a origem do `Laravel`, quem o criou, e qual problema ele visa resolver.
-- **Explanação:** Descrevam como o `Laravel` se posiciona entre outros frameworks e bibliotecas, como `React` e `Angular`, em termos de curva de aprendizado, performance e uso.
+- O `Laravel` é um framework de aplicação PHP que oferece uma abordagem para o desenvolvimento de aplicações web, seguindo o padrão arquitetônico MVC (Model-View-Controller).
+- No contexto do `Laravel`, o padrão MVC é implementado de forma robusta e eficiente.
+- Model:
+    - Os modelos em Laravel representam a camada de acesso aos dados. Eles são responsáveis pela interação com o banco de dados, realizando operações como consultas, inserções, atualizações e exclusões.
+    - Cada modelo geralmente corresponde a uma tabela do banco de dados, e os modelos são usados para recuperar e armazenar informações no banco de dados.
+    - Os modelos no Laravel geralmente são armazenados no diretório app/Models.
+- View:
+    - As visualizações em Laravel são responsáveis por exibir os dados aos usuários. Elas geralmente consistem em arquivos de template que combinam HTML com tags Blade (o mecanismo de template do Laravel) para renderizar dados dinâmicos.
+    - As visualizações podem ser retornadas pelos controladores para serem exibidas aos usuários ou podem ser incluídas em outras visualizações para reutilização.
+    - As visualizações no Laravel geralmente são armazenadas no diretório resources/views.
+- Controller:
+    - Os controladores em Laravel gerenciam o fluxo de solicitações HTTP. Eles atuam como intermediários entre as rotas e os modelos, processando as solicitações do usuário e fornecendo as respostas adequadas.
+    - Os controladores são responsáveis por recuperar dados dos modelos, interagir com os serviços necessários, preparar dados para exibição e retornar as visualizações ou respostas apropriadas para o navegador.
+    - Os controladores no Laravel geralmente são armazenados no diretório app/Http/Controllers.
+- Além desses três componentes principais, o Laravel também usa outros conceitos para tornar a arquitetura mais flexível e poderosa, como:
+    - Routes: As rotas definem como as solicitações HTTP devem ser manipuladas. Elas mapeiam URLs para controladores e métodos de controladores específicos.
+    - Middleware: O middleware é uma camada intermediária entre a solicitação HTTP e o aplicativo. Ele pode ser usado para realizar tarefas como autenticação, autorização, manipulação de solicitações e muito mais.
+    - Services: Os serviços são classes que encapsulam a lógica de negócios reutilizável e são frequentemente utilizados para manter os controladores finos e concentrados na manipulação das solicitações HTTP.
+    - Validação: O Laravel fornece um sistema de validação poderoso que pode ser usado para validar dados de entrada do usuário antes de serem processados pelo aplicativo.
 
 ## 1.2 Por que Laravel?
 
-Aqui vocês podem destacar como `Laravel` ganhou popularidade por sua facilidade de integração, reatividade, e a eficiente maneira de desenvolver componentes reutilizáveis.
-
-**Orientações adicionais:**
-
-- **Comparação:** Preparem uma comparação breve com outros `frameworks`, focando em pontos como tamanho do framework, velocidade, e flexibilidade.
-- **Casos de Uso:** Identifiquem e discutam alguns casos de uso ideais para `Laravel`, e por que empresas o escolhem para seus projetos.
+- O Laravel é frequentemente elogiado por sua capacidade de ser adotado incrementalmente, o que significa que você pode começar a usar partes específicas do framework em seu projeto sem ter que adotar o framework inteiro de uma só vez.
+- Isso oferece flexibilidade e permite que os desenvolvedores escolham as partes do Laravel que melhor se encaixam em suas necessidades, sem a sobrecarga de aprender e implementar todo o framework de uma vez só.
+- Benefícios da adoção incremental:
+    - Flexibilidade na adoção: Você pode começar usando apenas os componentes do Laravel que são relevantes para seu projeto. 
+    - Escalabilidade: À medida que seu projeto cresce, você pode adicionar mais recursos e componentes do Laravel conforme necessário, sem ter que redesenhar todo o projeto. Isso torna mais fácil escalar seu aplicativo à medida que sua base de código cresce.
+    - Curva de aprendizado gradual: Os desenvolvedores podem aprender e dominar um componente do Laravel de cada vez, em vez de se sentirem sobrecarregados com o aprendizado de todo o framework de uma vez.
+- Malefícios da adoção incremental:
+    - Complexidade adicional: Adotar apenas partes do Laravel pode adicionar complexidade ao seu projeto, especialmente se você estiver misturando vários frameworks ou bibliotecas. Isso pode dificultar a manutenção e o entendimento do código para outros membros da equipe.
+    - Integração com outros componentes: Se você estiver integrando apenas partes do Laravel em uma aplicação existente, pode haver desafios na integração com outros componentes ou bibliotecas de terceiros, especialmente se eles não estiverem alinhados com a arquitetura do Laravel.
+    - Dependências: Ao adotar partes do Laravel, você estará adicionando dependências ao seu projeto, o que pode aumentar a complexidade do gerenciamento de dependências e das atualizações futuras.
+- Alguns motivos para a escolha do Laravel são:
+    - Facilidade de Integração:
+        - Laravel foi projetado com uma arquitetura que facilita a integração com outras bibliotecas e ferramentas. Isso permite que os desenvolvedores escolham as melhores ferramentas para suas necessidades específicas e as integrem facilmente em seus projetos Laravel.
+        - O framework oferece suporte para integração com bibliotecas populares de terceiros através de pacotes Composer, tornando a inclusão de funcionalidades adicionais em projetos Laravel uma tarefa simples.
+    - Reatividade:
+        - Com o uso de ferramentas como o Laravel Echo e o Laravel Livewire, o Laravel oferece soluções eficientes para desenvolver aplicativos reativos em tempo real. Isso é particularmente útil para aplicativos que exigem atualizações em tempo real, como aplicativos de bate-papo, painéis de controle em tempo real, entre outros.
+        - Laravel Echo, por exemplo, é uma ferramenta que facilita a implementação de comunicação em tempo real entre o servidor e o cliente utilizando WebSockets e outros protocolos, permitindo atualizações instantâneas na interface do usuário.
+    - Desenvolvimento de Componentes Reutilizáveis:
+        - O Laravel promove uma abordagem modular para o desenvolvimento de aplicativos, o que incentiva a criação de componentes reutilizáveis. Isso é facilitado pelo uso extensivo de conceitos como Service Providers, Facades e Traits, que permitem encapsular funcionalidades em componentes independentes que podem ser facilmente reutilizados em diferentes partes do aplicativo ou mesmo em projetos diferentes.
+        - Além disso, o Laravel facilita a criação e distribuição de pacotes reutilizáveis através do Composer, permitindo que os desenvolvedores compartilhem seus componentes com a comunidade e contribuam para o ecossistema do Laravel.
+- Casos de Uso Ideais para Laravel:
+    - Desenvolvimento de aplicações web do lado do servidor, especialmente aquelas que requerem interações complexas com bancos de dados e autenticação de usuários.
+    - Construção de APIs RESTful para fornecer serviços de backend para aplicações front-end.
+    - Desenvolvimento de sistemas de gerenciamento de conteúdo (CMS), como blogs, fóruns e lojas online.
+    - Aplicações empresariais que exigem uma arquitetura robusta e escalável do lado do servidor.
+    - Projetos que precisam de uma solução rápida
 
 ## 1.3 Primeiros Passos com Laravel
 
-Introduzam o `Laravel` em um projeto surpreendentemente simples. Apresentem a flexibilidade do CLI (Command Line Interface) chamada Laravel Installer para a inicialização de novos projetos.
-
-**Orientações adicionais:**
-
-- **Instalação:** Demonstre como instalar o `Laravell Installer` globalmente usando o `Composer`, o gerenciador de dependências do PHP. Demonstrem como isso proporciona um método rápido para criar novos projetos Laravel.
-  ```bash
+- **Instalação:**
+  ```
   composer global require laravel/installer
 
+- **Criação de um Novo Projeto utilizando o Composer:**
   ```
-- **Criação de um Novo Projeto:** Mostrem como criar um novo projeto `Laravel` usando o `Laravell Installer` com o comando `new`. Isso criará um novo diretório contendo uma instalação Laravel fresca com todas as dependências necessárias já instaladas.
-- ```bash
-  laravel new meu-projeto-laravel
-
+  composer create-project laravel/laravel example-app
+- ou:
   ```
-- **Estrutura do Projeto:** Forneçam uma visão geral da estrutura de pastas de um projeto e explique a finalidade de cada pasta e arquivo principal. Lembre-se de enfatizar a estrutura incluindo diretórios como app/ para o código da aplicação, config/ para arquivos de configuração, public/ para arquivos acessíveis publicamente, resources/ para views e assets, routes/ para definições de rotas, e storage/ para arquivos de log e sessões.
+  composer global require laravel/installer
+  laravel new example-app
+- **Uma vez criado o projeto, você pode utilizar da ferramenta artisan para rodar o projeto:**
+  ```
+  cd example-app
+  php artisan serve
+- **Pela primeira vez, você verá esta tela de boas-vindas:**
+  ![imagem_2024-03-18_214748454](https://github.com/upe-garanhuns/pweb-2023.2-laravel/assets/110642021/0679d4e2-22ee-4561-9026-b6a343aaf547)
 
 ## 1.4 Primeiro Componente Laravel
+- Diferente de frameworks como o Vue.js, o Laravel não é baseado em componentes para a interface do usuário (UI);
+- No entanto, o Laravel oferece o Blade como seu mecanismo de template padrão, que permite a criação de layouts reutilizáveis e a inclusão de componentes modulares em arquivos de visão (views);
 
-Abordem que o `Laravel` utiliza um sistema baseado em templates para construir a UI. Discutam que por exemplo diferente do Vue, Blade não é baseado em componentes reativos, mas permite a criação de componentes reutilizáveis que podem incluir template, lógica e estilos de maneira simplificada.
+**Utilizando `component` e `slot`:**
+- **Criação de Componente:**
+- ```<!-- resources/views/components/button.blade.php -->
+    @props(['type' => 'submit', 'color' => 'blue'])
+    
+    <button type="{{ $type }}" class="bg-{{ $color }}-500 text-white font-bold py-2 px-4 rounded">
+        {{ $slot }}
+    </button>
 
-**Orientações adicionais:**
+- **Integração do Componente:**
+- ```<!-- resources/views/welcome.blade.php -->
+    @component('components.button', ['color' => 'green'])
+        Click me
+    @endcomponent
+  
+**Utilizando `yield` e `section`:**
+- **Criação de Componente:**
+- ```<!-- resources/views/components/button.blade.php -->
+    <button type="@yield('type', 'submit')" class="bg-@yield('color', 'blue')-500 text-white font-bold py-2 px-4 rounded">
+        @yield('text', 'Button')
+    </button>
 
-- **Criação de Componente:** Guiem a criação de um componente Blade simples, como um botão ou um cabeçalho. Mostrem o código do template, script e estilo.
-- ```blade
-  {{-- resources/views/components/botao.blade.php --}}
-  <button class="{{ $classe }}">
-  {{ $slot }}
-  </button>
-
-  ```
-- **Integração do Componente:** Expliquem como integrar o componente Blade criado em uma view Laravel. Utilizem o componente criado passando dados como classes e conteúdo:
-- ```blade
-  {{-- Uso do componente dentro de uma view Blade --}}
-  @component('components.botao', ['classe' => 'btn-primary'])
-    Clique Aqui
-  @endcomponent
-
-  ```
+- **Integração do Componente:**
+- ```<!-- resources/views/welcome.blade.php -->
+    @extends('layouts.app')
+    
+    @section('content')
+        @component('components.button', ['color' => 'green'])
+            Click me
+        @endcomponent
+    @endsection
 
 # Seção 2: Arquitetura do Laravel
 
-- Nesta seção explorem a arquitetura fundamental do `Laravel`.
-- Abordem que sua estrutura não utiliza o sistema baseado em componentes, entretanto lembre-se que o Laravel suporta "componentes Blade", que são similares em conceito. Estes permitem a reutilização de views, encapsulando lógica e HTML.
-- O objetivo é fornecer aos colegas um entendimento detalhado dos aspectos arquiteturais do `Laravel`, permitindo uma apreciação mais profunda de como os sistemas são construídos e gerenciados.
-
 ## 2.1 Estrutura de Componentes do Laravel
 
-- Detalhem que `Laravel` não é baseado em componentes para UI como o `Vue.js`.-
-- Lembrem-se de nesta seção detalhar como os componentes funcionam e como eles podem ser compostos para construir aplicações complexas.
-
-### Orientações adicionais:
-
-1. **Definição de Componente:** Expliquem o que é um componente no contexto do Laravel, utilizando Blade para criar componentes reutilizáveis que encapsulam parte do HTML e lógica.
-
-   ```blade
-   @component('components.alert')
-    @slot('title')
-        Aviso Importante
-    @endslot
-
-    Este é o conteúdo do alerta.
-   @endcomponent
-
-
-   ```
-2. **Composição de Componentes:** Discutam como os componentes Blade podem ser compostos para construir interfaces complexas, utilizando slots para passar conteúdo adicional.
-3. **Exemplo Prático:** Forneçam um exemplo detalhado da criação de um pequeno componente composto por vários componentes interligados, como uma lista de tarefas. Mostrem cada passo, desde a criação dos componentes individuais até a sua composição em um aplicativo funcional.
+- O Laravel não é baseado em componentes como um framework JavaScript como Vue.js. No entanto, o Laravel é composto por diversos componentes e possui uma arquitetura modular que permite a reutilização de partes específicas do framework.
+- Em vez de uma estrutura de componentes como em Vue.js, o Laravel utiliza uma combinação de diferentes conceitos e componentes para construir aplicações web robustas.
+- O Laravel utiliza o Blade como seu mecanismo de template. Blade oferece uma sintaxe simples e poderosa para criar visões (views) em PHP, permitindo a separação clara entre a lógica do backend e a apresentação do frontend. Com Blade, você pode criar layouts, incluir arquivos parciais, e até mesmo criar diretivas personalizadas para componentização.
 
 ## 2.2 Sistema "Reativo" do Laravel
 
